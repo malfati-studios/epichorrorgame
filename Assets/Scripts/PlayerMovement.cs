@@ -112,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (nextFootstep <= 0)
         {
-            Debug.Log("PLAYING FOOTSTEP " + nextFootstep);
             AudioController.instance.PlayFootstepSound();
             nextFootstep = 0;
             nextFootstep += footstepDelay;
