@@ -6,6 +6,8 @@ public class AudioController : MonoBehaviour
 
     [SerializeField] private AudioSource openDoorSound;
     [SerializeField] private AudioSource closeDoorSound;
+    [SerializeField] private AudioSource grabKeySound;
+    [SerializeField] private AudioSource flashlightSound;
     [SerializeField] private AudioSource[] footstepsSounds;
 
 
@@ -36,5 +38,15 @@ public class AudioController : MonoBehaviour
     {
         int index = Random.Range(0, footstepsSounds.Length);
         footstepsSounds[index].Play();
+    }
+
+    public void PlayGrabKeySound()
+    {
+        grabKeySound.Play();
+    }
+
+    public void PlayFlashlightSound()
+    {
+        flashlightSound.Play();
     }
 }

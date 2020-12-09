@@ -64,5 +64,6 @@ crashlytics-build.properties
 /obj
 /Packages
 /Assets/Imports
+/Recordings
 
 
