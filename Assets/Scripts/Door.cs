@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public Action<DoorEvent> doorListeners;
+    
     [SerializeField] private Transform pivotPoint;
+    [SerializeField] private string doorName;
 
     private FloatLerper lerper;
     private float lastLerpervalue;
@@ -73,21 +77,24 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void Close()
+    public void Close()
     {
         _collider.enabled = false;
         currentState = DoorState.CLOSING;
         lerper = new FloatLerper(2f, AbstractLerper<float>.SMOOTH_TYPE.STEP_SMOOTHER);
         lerper.SetValues(90f, 0f, true);
+        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.CLOSE_DOOR));
     }
 
-    private void Open()
+    public void Open()
     {
         _collider.enabled = false;
         currentState = DoorState.OPENING;
         lerper = new FloatLerper(2f, AbstractLerper<float>.SMOOTH_TYPE.EASE_OUT);
         lerper.SetValues(0f, 90f, true);
         AudioController.instance.PlayOpenDoorSound();
+        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.OPEN_DOOR));
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -106,4 +113,22 @@ public class Door : MonoBehaviour
     {
         _collider = GetComponent<BoxCollider>();
     }
+}
+
+public struct DoorEvent
+{
+    private string doorName;
+    private DoorAction action;
+
+    public DoorEvent(string doorName, DoorAction action)
+    {
+        this.doorName = doorName;
+        this.action = action;
+    }
+}
+
+public enum DoorAction
+{
+    OPEN_DOOR,
+    CLOSE_DOOR
 }
