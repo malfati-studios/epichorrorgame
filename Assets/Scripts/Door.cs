@@ -4,7 +4,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public Action<DoorEvent> doorListeners;
-    
+
     [SerializeField] private Transform pivotPoint;
     [SerializeField] private string doorName;
 
@@ -13,6 +13,8 @@ public class Door : MonoBehaviour
     private bool playerNear;
     private BoxCollider _collider;
     private bool doorClosePlayed;
+    private int openCount;
+    private int closeCount;
 
     private enum DoorState
     {
@@ -83,7 +85,8 @@ public class Door : MonoBehaviour
         currentState = DoorState.CLOSING;
         lerper = new FloatLerper(2f, AbstractLerper<float>.SMOOTH_TYPE.STEP_SMOOTHER);
         lerper.SetValues(90f, 0f, true);
-        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.CLOSE_DOOR));
+        closeCount++;
+        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.CLOSE_DOOR, closeCount));
     }
 
     public void Open()
@@ -93,8 +96,8 @@ public class Door : MonoBehaviour
         lerper = new FloatLerper(2f, AbstractLerper<float>.SMOOTH_TYPE.EASE_OUT);
         lerper.SetValues(0f, 90f, true);
         AudioController.instance.PlayOpenDoorSound();
-        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.OPEN_DOOR));
-
+        openCount++;
+        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.OPEN_DOOR, openCount));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -117,13 +120,15 @@ public class Door : MonoBehaviour
 
 public struct DoorEvent
 {
-    private string doorName;
-    private DoorAction action;
+    public string doorName;
+    public DoorAction action;
+    public int eventCount;
 
-    public DoorEvent(string doorName, DoorAction action)
+    public DoorEvent(string doorName, DoorAction action, int eventCount)
     {
         this.doorName = doorName;
         this.action = action;
+        this.eventCount = eventCount;
     }
 }
 

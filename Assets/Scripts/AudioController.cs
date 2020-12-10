@@ -8,6 +8,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioSource closeDoorSound;
     [SerializeField] private AudioSource grabKeySound;
     [SerializeField] private AudioSource flashlightSound;
+    [SerializeField] private AudioSource firstJumpscareSound;
     [SerializeField] private AudioSource[] footstepsSounds;
 
 
@@ -48,5 +49,10 @@ public class AudioController : MonoBehaviour
     public void PlayFlashlightSound()
     {
         flashlightSound.Play();
+    }
+    
+    public void PlayFirstJumpscareSound()
+    {
+        firstJumpscareSound.Play();
     }
 }
