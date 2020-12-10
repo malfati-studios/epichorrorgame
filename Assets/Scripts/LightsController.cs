@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class LightsController : MonoBehaviour
 {
@@ -14,6 +15,22 @@ public class LightsController : MonoBehaviour
     [SerializeField] private LevelLight hallChandelier;
     [SerializeField] private LevelLight roomLamp;
 
+    private Material litMaterial;
+    private Material unlitMaterial;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            TurnOffAllLights();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            TurnOnAllLights();
+        }
+    }
+
     public void TurnOffAllLights()
     {
         enterLamp.TurnOff();
@@ -24,6 +41,7 @@ public class LightsController : MonoBehaviour
         hallChandelier.TurnOff();
         roomLamp.TurnOff();
     }
+
 
     public void TurnOnAllLights()
     {
@@ -36,6 +54,7 @@ public class LightsController : MonoBehaviour
         roomLamp.TurnOn();
     }
 
+
     public void FlickerHallChandelier()
     {
         hallChandelier.StartFlickering(minWaitTime, maxWaitTime);
@@ -45,7 +64,7 @@ public class LightsController : MonoBehaviour
     {
         hallChandelier.TurnOn();
     }
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -57,5 +76,4 @@ public class LightsController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
 }

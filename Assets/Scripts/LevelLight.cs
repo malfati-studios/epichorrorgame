@@ -3,13 +3,20 @@ using UnityEngine;
 
 public class LevelLight : MonoBehaviour
 {
+    [SerializeField] private Material litMaterial;
+    [SerializeField] private Material unlitMaterial;
+
     private Light light;
+    private MeshRenderer meshRenderer;
     private bool flickering;
     private Coroutine flickerCoroutine;
+    private bool on;
 
     void Start()
     {
         light = transform.GetChild(0).GetComponent<Light>();
+        meshRenderer = transform.GetComponent<MeshRenderer>();
+        on = true;
     }
 
     public void TurnOn()
@@ -20,7 +27,7 @@ public class LevelLight : MonoBehaviour
             StopCoroutine(flickerCoroutine);
         }
 
-        light.enabled = true;
+        InternalTurnOn();
     }
 
     public void TurnOff()
@@ -31,7 +38,7 @@ public class LevelLight : MonoBehaviour
             StopCoroutine(flickerCoroutine);
         }
 
-        light.enabled = false;
+        InternalTurnOff();
     }
 
     public void StartFlickering(float minWaitTime, float maxWaitTime)
@@ -45,7 +52,28 @@ public class LevelLight : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
-            light.enabled = !light.enabled;
+            if (on)
+            {
+                InternalTurnOff();
+            }
+            else
+            {
+                InternalTurnOn();
+            }
         }
+    }
+
+    private void InternalTurnOn()
+    {
+        meshRenderer.material = litMaterial;
+        light.enabled = true;
+        on = true;
+    }
+
+    private void InternalTurnOff()
+    {
+        meshRenderer.material = unlitMaterial;
+        light.enabled = false;
+        on = false;
     }
 }
