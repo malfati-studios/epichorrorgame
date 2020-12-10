@@ -5,7 +5,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private GameObject mainCamera;
 
     private bool hasFlashlight;
+    private bool hasRustedKey;
     private bool activeFlashLight;
+
     public void PickUpFlashlight()
     {
         UIController.instance.ActivateFlashlightInventory();
@@ -14,9 +16,26 @@ public class PlayerInventory : MonoBehaviour
         hasFlashlight = true;
     }
 
+    public bool HasFlashlight()
+    {
+        return hasFlashlight;
+    }
+
+    public bool HasRustedKey()
+    {
+        return hasRustedKey;
+    }
+
     public void PickUpRustedKey()
     {
         UIController.instance.ActivateRustedKeyInventory();
+        hasRustedKey = true;
+    }
+
+    public void UseRustedKey()
+    {
+        UIController.instance.DeactivateRustedKeyInventory();
+        hasRustedKey = false;
     }
 
     private void Update()
@@ -30,5 +49,9 @@ public class PlayerInventory : MonoBehaviour
                 AudioController.instance.PlayFlashlightSound();
             }
         }
+    }
+
+    public void OpenedChest()
+    {
     }
 }

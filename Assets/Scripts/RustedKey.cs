@@ -9,12 +9,15 @@
         AudioController.instance.PlayGrabKeySound();
     }
 
-    public override void PlayerNearCallback()
+    public override void PlayerNearCallback(PlayerInventory player)
     {
-        UIController.instance.ShowPickUpObjectText(RUSTED_KEY);
+        if (player.HasFlashlight())
+        {
+            UIController.instance.ShowPickUpObjectText(RUSTED_KEY);
+        }
     }
 
-    public override void PlayerLeftCallback()
+    public override void PlayerLeftCallback(PlayerInventory player)
     {
         UIController.instance.HidePickUpObjectText();
     }

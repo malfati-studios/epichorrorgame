@@ -6,8 +6,8 @@ public abstract class PickupableObject : MonoBehaviour
     private PlayerInventory player;
 
     public abstract void PickUpCallback(PlayerInventory player);
-    public abstract void PlayerNearCallback();
-    public abstract void PlayerLeftCallback();
+    public abstract void PlayerNearCallback(PlayerInventory player);
+    public abstract void PlayerLeftCallback(PlayerInventory player);
     
     private void OnTriggerEnter(Collider other)
     {
@@ -15,7 +15,7 @@ public abstract class PickupableObject : MonoBehaviour
         {
             playerNear = true;
             player = other.GetComponent<PlayerInventory>();
-            PlayerNearCallback();
+            PlayerNearCallback(player);
         }
     }
 
@@ -24,8 +24,7 @@ public abstract class PickupableObject : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNear = false;
-            player = null;
-            PlayerLeftCallback();
+            PlayerLeftCallback(player);
         }
     }
 

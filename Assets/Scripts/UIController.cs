@@ -8,8 +8,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject pickupFlashlightText;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject toggleFlashlightText;
-
-
+    [SerializeField] private GameObject openChestText;
 
     private void Awake()
     {
@@ -33,7 +32,7 @@ public class UIController : MonoBehaviour
         toggleFlashlightText.SetActive(true);
         Invoke("HideFlashlightTutorialText", 3f);
     }
-    
+
     public void HideFlashlightTutorialText()
     {
         toggleFlashlightText.SetActive(false);
@@ -46,13 +45,23 @@ public class UIController : MonoBehaviour
 
     public void ShowPickUpObjectText(string objectName)
     {
-       pickupFlashlightText.SetActive(true);
-       pickupFlashlightText.GetComponent<TextMeshProUGUI>().text = "Press 'Q' to pick up " + objectName;
+        pickupFlashlightText.SetActive(true);
+        pickupFlashlightText.GetComponent<TextMeshProUGUI>().text = "Press 'Q' to pick up " + objectName;
     }
 
     public void HidePickUpObjectText()
     {
         pickupFlashlightText.SetActive(false);
+    }
+
+    public void ShowOpenChestText()
+    {
+        openChestText.SetActive(true);
+    }
+
+    public void HideOpenChestText()
+    {
+        openChestText.SetActive(false);
     }
 
     public void ActivateFlashlightInventory()
@@ -65,5 +74,11 @@ public class UIController : MonoBehaviour
     {
         inventory.SetActive(true);
         inventory.transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    public void DeactivateRustedKeyInventory()
+    {
+        inventory.SetActive(false);
+        inventory.transform.GetChild(1).gameObject.SetActive(false);
     }
 }

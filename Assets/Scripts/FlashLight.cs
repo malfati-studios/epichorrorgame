@@ -8,12 +8,12 @@
         player.PickUpFlashlight();
     }
 
-    public override void PlayerNearCallback()
+    public override void PlayerNearCallback(PlayerInventory player)
     {
         UIController.instance.ShowPickUpObjectText(FLASHLIGHT);
     }
 
-    public override void PlayerLeftCallback()
+    public override void PlayerLeftCallback(PlayerInventory player)
     {
         UIController.instance.HidePickUpObjectText();
     }

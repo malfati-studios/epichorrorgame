@@ -4,6 +4,7 @@
 public class EventManager : MonoBehaviour
 {
     private IScaryEvent slendyInHallway;
+
     private void Start()
     {
         DoorsController.instance.doorsEvents += OnDoorEvent;
@@ -18,7 +19,8 @@ public class EventManager : MonoBehaviour
 
     private void OnDoorEvent(DoorEvent doorEvent)
     {
-        if(doorEvent.doorName.Equals("hallwayDoor"))
+        if (doorEvent.doorName.Equals("hallwayDoor") && doorEvent.action.Equals(DoorAction.OPEN_DOOR) &&
+            doorEvent.eventCount == 1)
         {
             slendyInHallway.FireEvent();
         }
