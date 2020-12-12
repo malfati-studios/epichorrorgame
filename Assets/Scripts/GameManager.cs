@@ -2,15 +2,33 @@
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager instance;
+
+    void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        SceneController.instance.levelLoaded += OnGameSceneLoad;
+    }
+
+    private void OnGameSceneLoad(string obj)
+    {
+        DialogManager.instance.StartingDialog();
+    }
+
+    public void StartGame()
+    {
+        SceneController.instance.LoadGameScene();
     }
 }

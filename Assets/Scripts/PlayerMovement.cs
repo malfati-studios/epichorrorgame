@@ -58,11 +58,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && move.sqrMagnitude > 0)
         {
+            if(state == MovingState.IDLE) nextFootstep = footstepDelay;
             currentSpeed = speed * 2;
             state = MovingState.RUNNING;
+            
         }
         else if (move.sqrMagnitude > 0)
         {
+            if(state == MovingState.IDLE) nextFootstep = footstepDelay;
             currentSpeed = speed;
             state = MovingState.WALKING;
         }
