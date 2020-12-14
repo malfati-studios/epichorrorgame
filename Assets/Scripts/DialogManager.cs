@@ -9,13 +9,13 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private TextWriter textWriter;
 
     private string[] firstDialog = new[]
-        {"I'ts been a long time since I was last here. I better clean up", "Hope there's nothing scary"};
+        {"I'ts been a long time since I was last here", "Hope there is nothing scary"};
 
     private string[] getFlashLightDialog = new[]
-        {"A flashlight might come in handy"};
+        {"A flashlight might be useful"};
 
     private string[] getRustedKeyDialog = new[]
-        {"I wonder that this is for"};
+        {"I wonder what this is for"};
 
     private string[] currentDialog;
     private int currentDialogIndex;
