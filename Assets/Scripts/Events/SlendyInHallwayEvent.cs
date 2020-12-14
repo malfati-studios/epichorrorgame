@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ScaryEvents
+namespace Events
 {
     public class SlendyInHallwayEvent : MonoBehaviour, IScaryEvent
     {

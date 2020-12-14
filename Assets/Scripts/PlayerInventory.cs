@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using Events;
+using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public Action<EventName> inventoryEvents;
+    
     [SerializeField] private GameObject mainCamera;
 
     private bool hasFlashlight;
@@ -14,6 +18,7 @@ public class PlayerInventory : MonoBehaviour
         UIController.instance.ShowFlashlightTutorialText();
         mainCamera.transform.GetChild(0).gameObject.SetActive(true);
         hasFlashlight = true;
+        inventoryEvents.Invoke(EventName.PICK_UP_FLASHLIGHT);
     }
 
     public bool HasFlashlight()
@@ -30,6 +35,7 @@ public class PlayerInventory : MonoBehaviour
     {
         UIController.instance.ActivateRustedKeyInventory();
         hasRustedKey = true;
+        inventoryEvents.Invoke(EventName.PICK_UP_RUSTED_KEY);
     }
 
     public void UseRustedKey()

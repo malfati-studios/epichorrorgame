@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void OnGameSceneLoad(string obj)
     {
-        DialogManager.instance.StartingDialog();
+        EventManager.instance.GameStarted();
     }
 
     public void StartGame()

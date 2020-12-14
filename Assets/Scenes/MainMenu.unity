@@ -584,7 +584,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Slender''s
 
-    Apartment'
+    house'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bee0c1921cff5ca4c8c9621bf40e825d, type: 2}
   m_sharedMaterial: {fileID: -6535371444563807030, guid: bee0c1921cff5ca4c8c9621bf40e825d, type: 2}
