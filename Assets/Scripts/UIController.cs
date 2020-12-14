@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -9,6 +10,29 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject toggleFlashlightText;
     [SerializeField] private GameObject openChestText;
+    [SerializeField] private GameObject quitPanel;
+    private bool quitPanelActive;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (quitPanelActive)
+            {
+                quitPanel.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).GetComponent<PlayerLook>().ResumeLook();
+                quitPanelActive = false;
+            }
+            else
+            {
+                quitPanelActive = true;
+                quitPanel.SetActive(true);
+                GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).GetComponent<PlayerLook>().StopLook();
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -20,6 +44,11 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void OnQuitButtonPressed()
+    {
+        Application.Quit();
     }
 
     public void ShowOpenDoorText()

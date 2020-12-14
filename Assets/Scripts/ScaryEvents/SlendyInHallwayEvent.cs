@@ -26,9 +26,9 @@ namespace ScaryEvents
 
         private void StartEvent()
         {
-            slendy.StartWalking(slendySpawnPoint.position, slendyEndPoint.position);
             LightsController.instance.FlickerHallChandelier();
             AudioController.instance.PlayFirstJumpscareSound();
+            slendy.StartWalking(slendySpawnPoint.position, slendyEndPoint.position);
             Invoke("EndEvent", 3f);
         }
 

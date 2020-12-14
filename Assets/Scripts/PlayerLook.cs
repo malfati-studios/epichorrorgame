@@ -8,6 +8,8 @@ public class PlayerLook : MonoBehaviour
     public Transform playerBody;
 	
     float xRotation = 0f;
+
+    private bool look = true;
 	
     // Start is called before the first frame update
     void Start()
@@ -15,9 +17,20 @@ public class PlayerLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void ResumeLook()
+    {
+	    look = true;
+    }
+
+    public void StopLook()
+    {
+	    look = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
+	    if (!look) return;
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 		

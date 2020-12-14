@@ -2,7 +2,7 @@
 
 public class Slendy : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 2f;
+    [SerializeField] private float walkSpeed = 3f;
     private Vector3 originalPosition = new Vector3(8f, 0f, 50f);
     private Animator animator;
 

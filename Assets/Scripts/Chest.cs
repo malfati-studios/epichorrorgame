@@ -36,7 +36,7 @@ public class Chest : MonoBehaviour
     {
         if (!playerNear) return;
         if (opened) return;
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && player.HasRustedKey())
         {
             UIController.instance.HideOpenChestText();
             animation.Play();
