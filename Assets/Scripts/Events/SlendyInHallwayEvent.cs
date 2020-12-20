@@ -8,6 +8,7 @@ namespace Events
         private Slendy slendy;
         private Transform slendySpawnPoint;
         private Transform slendyEndPoint;
+        [SerializeField] private Door door;
 
         private float eventDelay = 2f;
         private DateTime eventStartedTime;
@@ -34,7 +35,8 @@ namespace Events
 
         private void EndEvent()
         {
-            LightsController.instance.TurnOnHallChandelier();
+            LightsController.instance.TurnOffHallChandelier();
+            door.Open();
             slendy.Reset();
         }
     }

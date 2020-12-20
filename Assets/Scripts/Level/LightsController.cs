@@ -64,6 +64,11 @@ public class LightsController : MonoBehaviour
     {
         hallChandelier.TurnOn();
     }
+    
+    public void TurnOffHallChandelier()
+    {
+        hallChandelier.TurnOff();
+    }
 
     private void Awake()
     {

@@ -80,6 +80,6 @@ public class AudioController : MonoBehaviour
 
     public void FadeOutAmbience()
     {
-        StartCoroutine(FadeAudioSource.StartFade(ambience,1f, 0));
+        StartCoroutine(FadeAudioSource.StartFade(ambience,2f, 0));
     }
 }
