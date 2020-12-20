@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,13 +23,26 @@ public class GameManager : MonoBehaviour
         SceneController.instance.levelLoaded += OnGameSceneLoad;
     }
 
-    private void OnGameSceneLoad(string obj)
+    private void OnGameSceneLoad(string gameScene)
     {
-        EventManager.instance.GameStarted();
+        if (gameScene == SceneController.CONTROLS_SCENE)
+        {
+            Invoke("StartGame", 8f);
+        }
+        else if (gameScene == SceneController.GAME_SCENE)
+        {
+            EventManager.instance.GameStarted();
+        }
     }
 
-    public void StartGame()
+    private void StartGame()
     {
+        AudioController.instance.FadeOutAmbience();
         SceneController.instance.LoadGameScene();
+    }
+
+    public void ShowControls()
+    {
+        SceneController.instance.LoadControlsScene();
     }
 }

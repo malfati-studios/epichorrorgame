@@ -1,7 +1,6 @@
 ﻿using Events;
 using UnityEngine;
 
-//This class gonna be ugly
 public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
@@ -21,8 +20,6 @@ public class EventManager : MonoBehaviour
         }
     }
 
-
-    // Startups
     private void Start()
     {
         DoorsController.instance.doorsEvents += OnDoorEvent;

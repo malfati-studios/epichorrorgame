@@ -6,10 +6,15 @@ public class SceneController : MonoBehaviour
 {
     #region EXPOSED_FIELDS
 
+    public static string GAME_SCENE = "GameScene";
+    public static string CONTROLS_SCENE = "Controls";
+    public static string MAIN_MENU = "MainMenu";
+
     [SerializeField] private CanvasGroup canvasGroup = null;
     [SerializeField] private float transitionTime = 1.0f;
 
     public Action<string> levelLoaded;
+
 
     #endregion
 
@@ -64,12 +69,17 @@ public class SceneController : MonoBehaviour
 
     private void ResetGame()
     {
-        LoadSceneWithTransition("MainMenu");
+        LoadSceneWithTransition(MAIN_MENU);
     }
 
     public void LoadGameScene()
     {
-        LoadSceneWithTransition("GameScene");
+        LoadSceneWithTransition(GAME_SCENE);
+    }
+    
+    public void LoadControlsScene()
+    {
+        LoadSceneWithTransition(CONTROLS_SCENE);
     }
 
     #endregion

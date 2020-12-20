@@ -12,14 +12,14 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioSource openChestSound;
     [SerializeField] private AudioSource typeWriterSound;
     [SerializeField] private AudioSource[] footstepsSounds;
+    [SerializeField] private AudioSource ambience;
 
-
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -71,5 +71,15 @@ public class AudioController : MonoBehaviour
     public void StopDialogSound()
     {
         typeWriterSound.Stop();
+    }
+
+    public void PlayAmbience()
+    {
+        ambience.Play();
+    }
+
+    public void FadeOutAmbience()
+    {
+        StartCoroutine(FadeAudioSource.StartFade(ambience,1f, 0));
     }
 }

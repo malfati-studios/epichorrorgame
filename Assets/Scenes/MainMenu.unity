@@ -123,6 +123,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &145238951
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 291.4295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 267.68268
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.15177
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239097, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: m_Name
+      value: AudioController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685729094128239099, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+      propertyPath: ambience
+      value: 
+      objectReference: {fileID: 1302878030}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+--- !u!4 &145238952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8685729094128239096, guid: 375ff15d89933fd44a7fccda29ad68f8, type: 3}
+  m_PrefabInstance: {fileID: 145238951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &205662879
 Mesh:
   m_ObjectHideFlags: 0
@@ -494,7 +560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuLight: {fileID: 6162417988860265640}
-  ambience: {fileID: 1302878030}
 --- !u!4 &276537438
 Transform:
   m_ObjectHideFlags: 0
@@ -505,8 +570,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.736296, y: -0.22422366, z: 19.74197}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1302878031}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1218,11 +1282,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302878029}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.736296, y: 0.22422366, z: -19.74197}
+  m_LocalPosition: {x: -291.4295, y: -267.68268, z: 41.15177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 276537438}
-  m_RootOrder: 0
+  m_Father: {fileID: 145238952}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1313346394
 GameObject:
