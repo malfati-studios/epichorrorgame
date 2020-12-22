@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Inventory;
+using UnityEngine;
 
 public abstract class PickupableObject : MonoBehaviour
 {

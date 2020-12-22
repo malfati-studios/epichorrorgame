@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [SerializeField] private float controlsSceneDuration;
 
     void Awake()
     {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameScene == SceneController.CONTROLS_SCENE)
         {
-            Invoke("StartGame", 8f);
+            Invoke("StartGame", controlsSceneDuration);
         }
         else if (gameScene == SceneController.GAME_SCENE)
         {

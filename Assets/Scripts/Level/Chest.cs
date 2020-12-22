@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Inventory;
+using UI;
+using UnityEngine;
 
 public class Chest : MonoBehaviour
 {

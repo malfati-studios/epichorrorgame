@@ -1,4 +1,7 @@
-﻿public class FlashLight : PickupableObject
+﻿using Inventory;
+using UI;
+
+public class FlashLight : PickupableObject
 {
     private static string FLASHLIGHT = "Flashlight";
     

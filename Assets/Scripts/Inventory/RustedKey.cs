@@ -1,4 +1,7 @@
-﻿public class RustedKey : PickupableObject
+﻿using Inventory;
+using UI;
+
+public class RustedKey : PickupableObject
 {
     private static string RUSTED_KEY = "rusted key";
     // Update is called once per frame

@@ -1,4 +1,5 @@
 ﻿using Events;
+using Inventory;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
