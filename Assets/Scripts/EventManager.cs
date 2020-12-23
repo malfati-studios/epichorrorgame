@@ -6,6 +6,7 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
     private IScaryEvent slendyInHallway;
+    private IScaryEvent allLightsOffEvent;
 
     public void GameStarted()
     {
@@ -37,6 +38,7 @@ public class EventManager : MonoBehaviour
                 break;
             case EventName.PICK_UP_FLASHLIGHT:
                 DialogManager.instance.GetFlashLightDialog();
+                allLightsOffEvent.FireEvent();
                 break;
         }
     }
@@ -45,6 +47,8 @@ public class EventManager : MonoBehaviour
     {
         slendyInHallway = transform.GetChild(0).GetChild(0).GetComponent<IScaryEvent>();
         slendyInHallway.SetUpEvent();
+        allLightsOffEvent = transform.GetChild(0).GetChild(1).GetComponent<IScaryEvent>();
+        allLightsOffEvent.SetUpEvent();
     }
 
     void Awake()

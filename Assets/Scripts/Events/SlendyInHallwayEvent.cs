@@ -14,6 +14,7 @@ namespace Events
 
         private float eventDelay = 2f;
         private DateTime eventStartedTime;
+        private bool finished;
 
         public void SetUpEvent()
         {
@@ -25,6 +26,11 @@ namespace Events
         public void FireEvent()
         {
             Invoke("StartEvent", eventDelay);
+        }
+
+        public bool EventFinished()
+        {
+            return finished;
         }
 
         private void StartEvent()
@@ -41,6 +47,7 @@ namespace Events
             door.Open();
             light.SetActive(true);
             slendy.Reset();
+            finished = true;
         }
     }
 }

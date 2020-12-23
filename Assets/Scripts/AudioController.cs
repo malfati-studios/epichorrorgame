@@ -13,6 +13,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioSource typeWriterSound;
     [SerializeField] private AudioSource[] footstepsSounds;
     [SerializeField] private AudioSource ambience;
+    [SerializeField] private AudioSource horrorAmbience;
 
     void Awake()
     {
@@ -78,8 +79,13 @@ public class AudioController : MonoBehaviour
         ambience.Play();
     }
 
+    public void PlayHorrorAmbience()
+    {
+        horrorAmbience.Play();
+    }
+
     public void FadeOutAmbience()
     {
-        StartCoroutine(FadeAudioSource.StartFade(ambience,2f, 0));
+        StartCoroutine(FadeAudioSource.StartFade(ambience, 2f, 0));
     }
 }
