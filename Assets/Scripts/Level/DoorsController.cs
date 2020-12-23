@@ -10,6 +10,7 @@ public class DoorsController : MonoBehaviour
     [SerializeField] private Door hallwayDoor;
     [SerializeField] private Door bedDoor;
     [SerializeField] private Door chestDoor;
+    [SerializeField] private Door basementDoor;
 
     public void OpenDoor(string doorName)
     {
@@ -32,6 +33,7 @@ public class DoorsController : MonoBehaviour
         hallwayDoor.doorListeners += OnDoorEvent;
         bedDoor.doorListeners += OnDoorEvent;
         chestDoor.doorListeners += OnDoorEvent;
+        basementDoor.doorListeners += OnDoorEvent;
     }
 
     private void OnDoorEvent(DoorEvent doorEvent)
@@ -68,6 +70,10 @@ public class DoorsController : MonoBehaviour
         else if (chestDoor.name.Equals(doorName))
         {
             return chestDoor;
+        }
+        else if (basementDoor.name.Equals(doorName))
+        {
+            return basementDoor;
         }
 
         return null;
