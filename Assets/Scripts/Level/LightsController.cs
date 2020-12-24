@@ -14,6 +14,8 @@ public class LightsController : MonoBehaviour
     [SerializeField] private LevelLight livingChandelier;
     [SerializeField] private LevelLight hallChandelier;
     [SerializeField] private LevelLight roomLamp;
+    [SerializeField] private GameObject openDoorSpotlight;
+
 
     private Material litMaterial;
     private Material unlitMaterial;
@@ -40,6 +42,7 @@ public class LightsController : MonoBehaviour
         livingChandelier.TurnOff();
         hallChandelier.TurnOff();
         roomLamp.TurnOff();
+        openDoorSpotlight.SetActive(false);
     }
 
 
