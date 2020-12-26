@@ -67,7 +67,6 @@ public class Slendy : MonoBehaviour
         transform.position = position;
         transform.LookAt(player.transform.position);
         animator.SetBool("Scream", true);
-        Invoke("StopScreaming", 2f);
     }
 
     private void StopScreaming()
