@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slendy
   - Note
+  - Torch
   layers:
   - Default
   - TransparentFX

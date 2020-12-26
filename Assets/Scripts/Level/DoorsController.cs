@@ -11,6 +11,7 @@ public class DoorsController : MonoBehaviour
     [SerializeField] private Door bedDoor;
     [SerializeField] private Door chestDoor;
     [SerializeField] private Door basementDoor;
+    [SerializeField] private Door cellarDoor;
 
     public void OpenDoor(string doorName)
     {
@@ -34,6 +35,7 @@ public class DoorsController : MonoBehaviour
         bedDoor.doorListeners += OnDoorEvent;
         chestDoor.doorListeners += OnDoorEvent;
         basementDoor.doorListeners += OnDoorEvent;
+        cellarDoor.doorListeners += OnDoorEvent;
     }
 
     private void OnDoorEvent(DoorEvent doorEvent)

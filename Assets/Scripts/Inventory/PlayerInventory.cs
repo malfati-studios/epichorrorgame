@@ -16,6 +16,7 @@ namespace Inventory
         private bool activeFlashLight;
 
         private bool pollingPlayerLookNote;
+        private bool pollingPlayerTorch;
 
         public void PickUpFlashlight()
         {
@@ -81,11 +82,31 @@ namespace Inventory
                     }
                 }
             }
+            
+            if (pollingPlayerTorch)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 10f))
+                {
+                    if (hit.transform.CompareTag("Torch"))
+                    {
+                        UIController.instance.ShowLightUpTorchText();
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            hit.transform.GetComponent<Torch>().TurnOn();
+                        }
+                    }
+                    else
+                    {
+                        UIController.instance.HideLightUpTorchText();
+                    }
+                }
+            }
         }
 
         public void OpenedChest()
         {
-            
         }
 
         public void StartPollingForPLayerLookNote()
@@ -97,6 +118,17 @@ namespace Inventory
         {
             UIController.instance.HideLeftClickForNoteText();
             pollingPlayerLookNote = false;
+        }
+
+        public void StartPollingForTorch()
+        {
+            pollingPlayerTorch = true;
+        }
+
+        public void StopPollingForTorch()
+        {
+            UIController.instance.HideLightUpTorchText();
+            pollingPlayerTorch = false;
         }
     }
 }

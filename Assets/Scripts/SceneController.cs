@@ -165,10 +165,10 @@ public class SceneController : MonoBehaviour
         levelLoaded.Invoke(nextScene);
     }
 
-    private void LoadSceneInstant(string sceneIndex)
+    private void LoadSceneInstant(string sceneName)
     {
         //Guardamos la escena proxima y abrimos la transicion
-        nextScene = sceneIndex;
+        nextScene = sceneName;
         SceneManager.LoadScene(nextScene);
         levelLoaded.Invoke(nextScene);
     }
@@ -181,4 +181,10 @@ public class SceneController : MonoBehaviour
     }
 
     #endregion
+
+    public void LoadMainMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        LoadSceneInstant("MainMenu");
+    }
 }

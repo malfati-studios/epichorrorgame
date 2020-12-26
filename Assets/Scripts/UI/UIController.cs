@@ -16,6 +16,7 @@ namespace UI
         [SerializeField] private GameObject livingRoomNote;
         [SerializeField] private GameObject keyRoomNote;
         [SerializeField] private GameObject readNoteText;
+        [SerializeField] private GameObject lightupTorch;
 
         private bool quitPanelActive;
         private bool showingNote;
@@ -166,6 +167,16 @@ namespace UI
         private void SetShowingNoteToTrue()
         {
             showingNote = true;
+        }
+        
+        public void ShowLightUpTorchText()
+        {
+            lightupTorch.SetActive(true);
+        }
+
+        public void HideLightUpTorchText()
+        {
+            lightupTorch.SetActive(false);
         }
     }
 }
