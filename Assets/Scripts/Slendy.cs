@@ -7,8 +7,11 @@ public class Slendy : MonoBehaviour
     private Animator animator;
 
     private bool walking;
+    private bool screaming;
     private Vector3 startWalkingPos;
     private Vector3 endWalkingPos;
+    private GameObject player;
+    [SerializeField] private AudioSource screamSound;
 
     public void Reset()
     {
@@ -29,6 +32,7 @@ public class Slendy : MonoBehaviour
     {
         transform.position = originalPosition;
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -45,5 +49,32 @@ public class Slendy : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, endWalkingPos, walkSpeed * Time.deltaTime);
         }
+
+        if (screaming)
+        {
+            transform.LookAt(player.transform.position);
+        }
+    }
+
+    public void StartScreamSound()
+    {
+        screamSound.Play();
+        CameraShake.ShakeCamera(0.1f, .9f);
+    }
+
+    public void Scream(Vector3 position)
+    {
+        transform.position = position;
+        transform.LookAt(player.transform.position);
+        animator.SetBool("Scream", true);
+        Invoke("StopScreaming", 2f);
+    }
+
+    private void StopScreaming()
+    {
+        screaming = false;
+        animator.SetBool("Scream", false);
+        screamSound.Stop();
+        Reset();
     }
 }

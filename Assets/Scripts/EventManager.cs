@@ -7,6 +7,7 @@ public class EventManager : MonoBehaviour
     public static EventManager instance;
     private IScaryEvent slendyInHallway;
     private IScaryEvent allLightsOffEvent;
+    private IScaryEvent slendyScream;
 
     public void GameStarted()
     {
@@ -49,6 +50,8 @@ public class EventManager : MonoBehaviour
         slendyInHallway.SetUpEvent();
         allLightsOffEvent = transform.GetChild(0).GetChild(1).GetComponent<IScaryEvent>();
         allLightsOffEvent.SetUpEvent();
+        slendyScream =  transform.GetChild(0).GetChild(2).GetComponent<IScaryEvent>();
+        slendyScream.SetUpEvent();
     }
 
     void Awake()
