@@ -104,13 +104,13 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         playerNear = true;
-        UIController.instance.ShowOpenDoorText();
+        UIController.instance.ShowMessage("Press 'E' to use door");
     }
 
     private void OnTriggerExit(Collider other)
     {
         playerNear = false;
-        UIController.instance.HideOpenDoorText();
+        UIController.instance.HideMessage();
     }
 
     private void Start()

@@ -2,5 +2,4 @@
 {
     void SetUpEvent();
     void FireEvent();
-    bool EventFinished();
 }

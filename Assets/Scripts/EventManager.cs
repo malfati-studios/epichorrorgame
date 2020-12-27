@@ -5,9 +5,11 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     public static EventManager instance;
-    private IScaryEvent slendyInHallway;
+    private IScaryEvent hallwayLightEvent;
     private IScaryEvent allLightsOffEvent;
     private IScaryEvent slendyScream;
+    private IScaryEvent dungeonDoorAppearEvent;
+
 
     public void GameStarted()
     {
@@ -19,15 +21,21 @@ public class EventManager : MonoBehaviour
         if (doorEvent.doorName.Equals("hallwayDoor") && doorEvent.action.Equals(DoorAction.OPEN_DOOR) &&
             doorEvent.eventCount == 1)
         {
-            slendyInHallway.FireEvent();
+            hallwayLightEvent.FireEvent();
         }
     }
 
     private void Start()
     {
         DoorsController.instance.doorsEvents += OnDoorEvent;
+        GameObject.Find("KeyRoomNote").GetComponent<Note>().noteRead += OnKeyRoomNoteRead;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().inventoryEvents += OnInventoryEvent;
         SetUpEvents();
+    }
+
+    private void OnKeyRoomNoteRead(Note.NoteName obj)
+    {
+        dungeonDoorAppearEvent.FireEvent();
     }
 
     private void OnInventoryEvent(EventName eventName)
@@ -46,12 +54,12 @@ public class EventManager : MonoBehaviour
 
     private void SetUpEvents()
     {
-        slendyInHallway = transform.GetChild(0).GetChild(0).GetComponent<IScaryEvent>();
-        slendyInHallway.SetUpEvent();
+        hallwayLightEvent = transform.GetChild(0).GetChild(0).GetComponent<IScaryEvent>();
+        hallwayLightEvent.SetUpEvent();
         allLightsOffEvent = transform.GetChild(0).GetChild(1).GetComponent<IScaryEvent>();
         allLightsOffEvent.SetUpEvent();
-        slendyScream =  transform.GetChild(0).GetChild(2).GetComponent<IScaryEvent>();
-        slendyScream.SetUpEvent();
+        dungeonDoorAppearEvent =  transform.GetChild(0).GetChild(2).GetComponent<IScaryEvent>();
+        dungeonDoorAppearEvent.SetUpEvent();
     }
 
     void Awake()

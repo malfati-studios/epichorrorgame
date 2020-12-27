@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace UI
@@ -7,16 +6,15 @@ namespace UI
     public class UIController : MonoBehaviour
     {
         public static UIController instance;
-        [SerializeField] private GameObject openDoorText;
-        [SerializeField] private GameObject pickupFlashlightText;
+        [SerializeField] private GameObject defaultMessage;
         [SerializeField] private GameObject inventory;
-        [SerializeField] private GameObject toggleFlashlightText;
-        [SerializeField] private GameObject openChestText;
         [SerializeField] private GameObject quitPanel;
         [SerializeField] private GameObject livingRoomNote;
+        [SerializeField] private GameObject livingRoomNoteSlenderDrawing;
+        [SerializeField] private GameObject bedRoomNote;
         [SerializeField] private GameObject keyRoomNote;
-        [SerializeField] private GameObject readNoteText;
-        [SerializeField] private GameObject lightupTorch;
+        [SerializeField] private GameObject dungeonEntranceNote;
+        [SerializeField] private GameObject dungeonSkeletonNote;
 
         private bool quitPanelActive;
         private bool showingNote;
@@ -47,9 +45,7 @@ namespace UI
             {
                 if (Input.GetMouseButton(0))
                 {
-                    Debug.Log("CLICKIN!");
-                    DeactivateLivingRoomNote();
-                    DeactivateKeyRoomNote();
+                    DeactivateNotes();
                     showingNote = false;
                 }
             }
@@ -72,46 +68,28 @@ namespace UI
             Application.Quit();
         }
 
-        public void ShowOpenDoorText()
+        public void ShowMessage(string message)
         {
-            openDoorText.SetActive(true);
+            defaultMessage.SetActive(true);
+            defaultMessage.GetComponent<TextMeshProUGUI>().text = message;
         }
 
-        public void ShowFlashlightTutorialText()
+        public void ShowTimedMessage(string message, float seconds)
         {
-            toggleFlashlightText.SetActive(true);
-            Invoke("HideFlashlightTutorialText", 3f);
+            defaultMessage.SetActive(true);
+            defaultMessage.GetComponent<TextMeshProUGUI>().text = message;
+            Invoke("HideMessage", seconds);
         }
 
-        public void HideFlashlightTutorialText()
+        public void HideMessage()
         {
-            toggleFlashlightText.SetActive(false);
-        }
-
-        public void HideOpenDoorText()
-        {
-            openDoorText.SetActive(false);
+            defaultMessage.SetActive(false);
         }
 
         public void ShowPickUpObjectText(string objectName)
         {
-            pickupFlashlightText.SetActive(true);
-            pickupFlashlightText.GetComponent<TextMeshProUGUI>().text = "Press 'Q' to pick up " + objectName;
-        }
-
-        public void HidePickUpObjectText()
-        {
-            pickupFlashlightText.SetActive(false);
-        }
-
-        public void ShowOpenChestText()
-        {
-            openChestText.SetActive(true);
-        }
-
-        public void HideOpenChestText()
-        {
-            openChestText.SetActive(false);
+            defaultMessage.SetActive(true);
+            defaultMessage.GetComponent<TextMeshProUGUI>().text = "Press 'Q' to pick up " + objectName;
         }
 
         public void ActivateFlashlightInventory()
@@ -138,45 +116,71 @@ namespace UI
             Invoke("SetShowingNoteToTrue", 1f);
         }
 
+        public void ShowLivingRoomNoteSlenderDrawing()
+        {
+            livingRoomNoteSlenderDrawing.SetActive(true);
+            Invoke("SetShowingNoteToTrue", 1f);
+        }
+
+        public void ShowBedRoomNote()
+        {
+            bedRoomNote.SetActive(true);
+            Invoke("SetShowingNoteToTrue", 1f);
+        }
+
         public void ShowKeyRoomNote()
         {
             keyRoomNote.SetActive(true);
             Invoke("SetShowingNoteToTrue", 1f);
         }
 
-        public void DeactivateLivingRoomNote()
+        public void ShowDungeonEntranceNote()
         {
-            livingRoomNote.SetActive(false);
+            dungeonEntranceNote.SetActive(true);
+            Invoke("SetShowingNoteToTrue", 1f);
         }
 
-        private void DeactivateKeyRoomNote()
+        public void ShowDungeonSkeletonNote()
         {
+            dungeonSkeletonNote.SetActive(true);
+            Invoke("SetShowingNoteToTrue", 1f);
+        }
+
+        private void DeactivateNotes()
+        {
+            livingRoomNote.SetActive(false);
+            livingRoomNoteSlenderDrawing.SetActive(false);
+            bedRoomNote.SetActive(false);
             keyRoomNote.SetActive(false);
+            dungeonEntranceNote.SetActive(false);
+            dungeonSkeletonNote.SetActive(false);
         }
 
         public void ShowLeftClickForNoteText()
         {
-            readNoteText.SetActive(true);
+            defaultMessage.SetActive(true);
+            defaultMessage.GetComponent<TextMeshProUGUI>().text = "Left click to read note";
         }
 
         public void HideLeftClickForNoteText()
         {
-            readNoteText.SetActive(false);
+            defaultMessage.SetActive(false);
         }
 
         private void SetShowingNoteToTrue()
         {
             showingNote = true;
         }
-        
+
         public void ShowLightUpTorchText()
         {
-            lightupTorch.SetActive(true);
+            defaultMessage.SetActive(true);
+            defaultMessage.GetComponent<TextMeshProUGUI>().text = "Left click to light up torch";
         }
 
         public void HideLightUpTorchText()
         {
-            lightupTorch.SetActive(false);
+            defaultMessage.SetActive(false);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Inventory
         public void PickUpFlashlight()
         {
             UIController.instance.ActivateFlashlightInventory();
-            UIController.instance.ShowFlashlightTutorialText();
+            UIController.instance.ShowTimedMessage("Press Left mouse click to toggle flashlight", 3f);
             mainCamera.transform.GetChild(0).gameObject.SetActive(true);
             hasFlashlight = true;
             inventoryEvents.Invoke(EventName.PICK_UP_FLASHLIGHT);
@@ -70,7 +70,7 @@ namespace Inventory
                 {
                     if (hit.transform.CompareTag("Note"))
                     {
-                        UIController.instance.ShowLeftClickForNoteText();
+                        UIController.instance.ShowMessage("Left click to read note");
                         if (Input.GetMouseButtonDown(0))
                         {
                             hit.transform.GetComponent<Note>().ShowNote();
@@ -99,7 +99,7 @@ namespace Inventory
                     }
                     else
                     {
-                        UIController.instance.HideLightUpTorchText();
+                        UIController.instance.HideMessage();
                     }
                 }
             }

@@ -9,7 +9,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private TextWriter textWriter;
 
     private string[] firstDialog = new[]
-        {"I'ts been a long time since I was last here", "Hope there is nothing scary"};
+        {"I've been lost in this forest since the morning. And I think I've been knocking the door for an hour", "Door was open and I need some shelter for the night. I think there's nobody home"};
 
     private string[] getFlashLightDialog = new[]
         {"A flashlight might be useful"};

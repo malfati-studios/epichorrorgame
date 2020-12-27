@@ -7,7 +7,7 @@ public class RustedKey : PickupableObject
     // Update is called once per frame
     public override void PickUpCallback(PlayerInventory player)
     {
-        UIController.instance.HidePickUpObjectText();
+        UIController.instance.HideMessage();
         player.PickUpRustedKey();
         AudioController.instance.PlayGrabKeySound();
     }
@@ -22,7 +22,7 @@ public class RustedKey : PickupableObject
 
     public override void PlayerLeftCallback(PlayerInventory player)
     {
-        UIController.instance.HidePickUpObjectText();
+        UIController.instance.HideMessage();
     }
 
 }

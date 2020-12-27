@@ -18,7 +18,7 @@ public class Chest : MonoBehaviour
             player = other.GetComponent<PlayerInventory>();
             if (player.HasRustedKey())
             {
-                UIController.instance.ShowOpenChestText();
+                UIController.instance.ShowMessage("Press 'Q' to open chest");
             }
         }
     }
@@ -30,7 +30,7 @@ public class Chest : MonoBehaviour
         {
             playerNear = false;
             player = null;
-            UIController.instance.HideOpenChestText();
+            UIController.instance.HideMessage();
         }
     }
 
@@ -40,7 +40,7 @@ public class Chest : MonoBehaviour
         if (opened) return;
         if (Input.GetKeyDown(KeyCode.Q) && player.HasRustedKey())
         {
-            UIController.instance.HideOpenChestText();
+            UIController.instance.HideMessage();
             animation.Play();
             AudioController.instance.PLayOpenChestSound();
             player.OpenedChest();

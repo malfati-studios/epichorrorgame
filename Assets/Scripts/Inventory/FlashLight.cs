@@ -7,7 +7,7 @@ public class FlashLight : PickupableObject
     
     public override void PickUpCallback(PlayerInventory player)
     {
-        UIController.instance.HidePickUpObjectText();
+        UIController.instance.HideMessage();
         player.PickUpFlashlight();
     }
 
@@ -18,6 +18,6 @@ public class FlashLight : PickupableObject
 
     public override void PlayerLeftCallback(PlayerInventory player)
     {
-        UIController.instance.HidePickUpObjectText();
+        UIController.instance.HideMessage();
     }
 }
