@@ -26,7 +26,7 @@ public class LightsController : MonoBehaviour
         {
             TurnOffAllLights();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             TurnOnAllLights();
@@ -35,6 +35,19 @@ public class LightsController : MonoBehaviour
 
     public void TurnOffAllLights()
     {
+        enterLamp.StartFlickering(minWaitTime, maxWaitTime);
+        clockLamp.StartFlickering(minWaitTime, maxWaitTime);
+        cabinetLamp.StartFlickering(minWaitTime, maxWaitTime);
+        deskLamp.StartFlickering(minWaitTime, maxWaitTime);
+        livingChandelier.StartFlickering(minWaitTime, maxWaitTime);
+        hallChandelier.StartFlickering(minWaitTime, maxWaitTime);
+        roomLamp.StartFlickering(minWaitTime, maxWaitTime);
+        Invoke("InternalTurnOff", 2f);
+    }
+
+    private void InternalTurnOff()
+    {
+        openDoorSpotlight.SetActive(false);
         enterLamp.TurnOff();
         clockLamp.TurnOff();
         cabinetLamp.TurnOff();
@@ -42,7 +55,6 @@ public class LightsController : MonoBehaviour
         livingChandelier.TurnOff();
         hallChandelier.TurnOff();
         roomLamp.TurnOff();
-        openDoorSpotlight.SetActive(false);
     }
 
 
@@ -67,7 +79,7 @@ public class LightsController : MonoBehaviour
     {
         hallChandelier.TurnOn();
     }
-    
+
     public void TurnOffHallChandelier()
     {
         hallChandelier.TurnOff();

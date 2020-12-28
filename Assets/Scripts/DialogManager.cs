@@ -37,7 +37,7 @@ public class DialogManager : MonoBehaviour
 
     private void StartDialog(string[] dialog)
     {
-        textWriter.AddWriter(text, dialog[0], .1f, true);
+        textWriter.AddWriter(text, dialog[0], .05f, true);
         currentDialog = dialog;
         currentDialogIndex = 1;
     }
