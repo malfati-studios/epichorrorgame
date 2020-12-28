@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Events
 {
-    public class SlendyInHallwayEvent : MonoBehaviour, IScaryEvent
+    public class SlendyInHallwayEvent : MonoBehaviour, IEvent
     {
         private Slendy slendy;
         private Transform slendySpawnPoint;
@@ -26,6 +26,11 @@ namespace Events
         public void FireEvent()
         {
             Invoke("StartEvent", eventDelay);
+        }
+
+        public void DeactivateEvent()
+        {
+            throw new NotImplementedException();
         }
 
         public bool EventFinished()

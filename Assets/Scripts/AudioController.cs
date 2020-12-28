@@ -14,6 +14,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioSource[] footstepsSounds;
     [SerializeField] private AudioSource ambience;
     [SerializeField] private AudioSource horrorAmbience;
+    [SerializeField] private AudioSource electricitySound;
+    [SerializeField] private AudioSource highPitchedSound;
 
     void Awake()
     {
@@ -58,6 +60,11 @@ public class AudioController : MonoBehaviour
     {
         firstJumpscareSound.Play();
     }
+    
+    public void PlayHighPitchedScarySound()
+    {
+        highPitchedSound.Play();
+    }
 
     public void PLayOpenChestSound()
     {
@@ -87,5 +94,15 @@ public class AudioController : MonoBehaviour
     public void FadeOutAmbience()
     {
         StartCoroutine(FadeAudioSource.StartFade(ambience, 2f, 0));
+    }
+
+    public void PlayElectricitySound()
+    {
+        electricitySound.Play();
+    }
+    
+    public void StopElectricitySound()
+    {
+        electricitySound.Stop();
     }
 }

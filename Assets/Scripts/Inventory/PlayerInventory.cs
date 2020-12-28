@@ -7,6 +7,7 @@ namespace Inventory
 {
     public class PlayerInventory : MonoBehaviour
     {
+        public static PlayerInventory instance;
         public Action<EventName> inventoryEvents;
 
         [SerializeField] private GameObject mainCamera;
@@ -14,13 +15,18 @@ namespace Inventory
         private bool hasFlashlight;
         private bool hasRustedKey;
         private bool activeFlashLight;
+        private bool hasLighter;
 
         private bool pollingPlayerLookNote;
         private bool pollingPlayerTorch;
 
+        private void Awake()
+        {
+            instance = this;
+        }
+
         public void PickUpFlashlight()
         {
-            UIController.instance.ActivateFlashlightInventory();
             UIController.instance.ShowTimedMessage("Press Left mouse click to toggle flashlight", 3f);
             mainCamera.transform.GetChild(0).gameObject.SetActive(true);
             hasFlashlight = true;
@@ -39,15 +45,8 @@ namespace Inventory
 
         public void PickUpRustedKey()
         {
-            UIController.instance.ActivateRustedKeyInventory();
             hasRustedKey = true;
             inventoryEvents.Invoke(EventName.PICK_UP_RUSTED_KEY);
-        }
-
-        public void UseRustedKey()
-        {
-            UIController.instance.DeactivateRustedKeyInventory();
-            hasRustedKey = false;
         }
 
         private void Update()
@@ -82,31 +81,40 @@ namespace Inventory
                     }
                 }
             }
-            
-            if (pollingPlayerTorch)
+
+            if (hasLighter)
             {
-                Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 10f))
+                if (pollingPlayerTorch)
                 {
-                    if (hit.transform.CompareTag("Torch"))
+                    Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit, 10f))
                     {
-                        UIController.instance.ShowLightUpTorchText();
-                        if (Input.GetMouseButtonDown(0))
+                        if (hit.transform.CompareTag("Torch"))
                         {
-                            hit.transform.GetComponent<Torch>().TurnOn();
+                            UIController.instance.ShowLightUpTorchText();
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                hit.transform.GetComponent<Torch>().TurnOn();
+                            }
                         }
-                    }
-                    else
-                    {
-                        UIController.instance.HideMessage();
+                        else
+                        {
+                            UIController.instance.HideMessage();
+                        }
                     }
                 }
             }
         }
 
-        public void OpenedChest()
+        public void PickUpLighter()
         {
+            UIController.instance.ShowTimedMessage("Press Left mouse click to light up torches", 3f);
+            hasLighter = true;
+            hasFlashlight = false;
+            mainCamera.transform.GetChild(1).gameObject.SetActive(true);
+            mainCamera.transform.GetChild(0).gameObject.SetActive(false);
+            inventoryEvents.Invoke(EventName.PICK_UP_LIGHTER);
         }
 
         public void StartPollingForPLayerLookNote()

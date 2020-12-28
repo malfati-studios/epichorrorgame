@@ -89,6 +89,16 @@ public class Door : MonoBehaviour
         closeCount++;
         doorListeners.Invoke(new DoorEvent(doorName, DoorAction.CLOSE_DOOR, closeCount));
     }
+    
+    public void CloseFast()
+    {
+        _collider.enabled = false;
+        currentState = DoorState.CLOSING;
+        lerper = new FloatLerper(1f, AbstractLerper<float>.SMOOTH_TYPE.STEP_SMOOTHER);
+        lerper.SetValues(90f, 0f, true);
+        closeCount++;
+        doorListeners.Invoke(new DoorEvent(doorName, DoorAction.CLOSE_DOOR, closeCount));
+    }
 
     public void Open()
     {

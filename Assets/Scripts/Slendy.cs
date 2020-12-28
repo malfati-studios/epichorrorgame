@@ -56,10 +56,10 @@ public class Slendy : MonoBehaviour
         }
     }
 
-    public void StartScreamSound()
+    public void StartScreamSound()    
     {
         screamSound.Play();
-        CameraShake.ShakeCamera(0.1f, .9f);
+        CameraShake.ShakeCamera(0.2f, .9f);
     }
 
     public void Scream(Vector3 position)

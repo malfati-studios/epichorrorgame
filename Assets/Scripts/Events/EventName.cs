@@ -3,6 +3,7 @@
     public enum EventName
     {
         PICK_UP_FLASHLIGHT,
-        PICK_UP_RUSTED_KEY
+        PICK_UP_RUSTED_KEY,
+        PICK_UP_LIGHTER
     }
 }

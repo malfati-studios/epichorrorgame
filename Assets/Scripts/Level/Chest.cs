@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    [SerializeField] private string[] chestOpenedDialog;
     private bool playerNear;
     private bool opened;
+    private bool looted;
     private PlayerInventory player;
     private Animation animation;
 
@@ -37,14 +39,27 @@ public class Chest : MonoBehaviour
     private void Update()
     {
         if (!playerNear) return;
-        if (opened) return;
+        if (looted) return;
+        if (opened)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                looted = true;
+                PlayerInventory.instance.PickUpLighter();
+                UIController.instance.HideMessage();
+                DialogManager.instance.ShowDialog(chestOpenedDialog);
+                UIController.instance.ShowTorchesUI();
+                transform.GetChild(2).gameObject.SetActive(false);
+            }
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Q) && player.HasRustedKey())
         {
             UIController.instance.HideMessage();
             animation.Play();
             AudioController.instance.PLayOpenChestSound();
-            player.OpenedChest();
-            opened = true;    
+            opened = true;
+            UIController.instance.ShowMessage("Press 'Q' to pick up lighter");
         }
     }
 

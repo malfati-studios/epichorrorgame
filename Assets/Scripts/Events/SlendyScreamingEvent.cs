@@ -2,7 +2,7 @@
 
 namespace Events
 {
-    public class SlendyScreamingEvent : MonoBehaviour, IScaryEvent
+    public class SlendyScreamingEvent : MonoBehaviour, IEvent
     {
         private Slendy slendy;
         private Transform slendySpawnPoint;
@@ -27,6 +27,11 @@ namespace Events
         public void FireEvent()
         {
             slendy.Scream(slendySpawnPoint.position);
+            finished = true;
+        }
+
+        public void DeactivateEvent()
+        {
             finished = true;
         }
 

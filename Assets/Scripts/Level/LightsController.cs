@@ -33,7 +33,7 @@ public class LightsController : MonoBehaviour
         }
     }
 
-    public void TurnOffAllLights()
+    public void FlickerAllLights()
     {
         enterLamp.StartFlickering(minWaitTime, maxWaitTime);
         clockLamp.StartFlickering(minWaitTime, maxWaitTime);
@@ -42,10 +42,9 @@ public class LightsController : MonoBehaviour
         livingChandelier.StartFlickering(minWaitTime, maxWaitTime);
         hallChandelier.StartFlickering(minWaitTime, maxWaitTime);
         roomLamp.StartFlickering(minWaitTime, maxWaitTime);
-        Invoke("InternalTurnOff", 2f);
     }
 
-    private void InternalTurnOff()
+    public void TurnOffAllLights()
     {
         openDoorSpotlight.SetActive(false);
         enterLamp.TurnOff();

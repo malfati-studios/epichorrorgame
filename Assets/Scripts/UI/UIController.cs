@@ -6,8 +6,8 @@ namespace UI
     public class UIController : MonoBehaviour
     {
         public static UIController instance;
+        [SerializeField] private GameObject torchesText;
         [SerializeField] private GameObject defaultMessage;
-        [SerializeField] private GameObject inventory;
         [SerializeField] private GameObject quitPanel;
         [SerializeField] private GameObject livingRoomNote;
         [SerializeField] private GameObject livingRoomNoteSlenderDrawing;
@@ -15,6 +15,7 @@ namespace UI
         [SerializeField] private GameObject keyRoomNote;
         [SerializeField] private GameObject dungeonEntranceNote;
         [SerializeField] private GameObject dungeonSkeletonNote;
+
 
         private bool quitPanelActive;
         private bool showingNote;
@@ -27,16 +28,14 @@ namespace UI
                 {
                     quitPanel.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
-                    GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).GetComponent<PlayerLook>()
-                        .ResumeLook();
+                    PlayerLook.instance.ResumeLook();
                     quitPanelActive = false;
                 }
                 else
                 {
                     quitPanelActive = true;
                     quitPanel.SetActive(true);
-                    GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).GetComponent<PlayerLook>()
-                        .StopLook();
+                    PlayerLook.instance.StopLook();
                     Cursor.lockState = CursorLockMode.None;
                 }
             }
@@ -90,24 +89,6 @@ namespace UI
         {
             defaultMessage.SetActive(true);
             defaultMessage.GetComponent<TextMeshProUGUI>().text = "Press 'Q' to pick up " + objectName;
-        }
-
-        public void ActivateFlashlightInventory()
-        {
-            inventory.SetActive(true);
-            inventory.transform.GetChild(0).gameObject.SetActive(true);
-        }
-
-        public void ActivateRustedKeyInventory()
-        {
-            inventory.SetActive(true);
-            inventory.transform.GetChild(1).gameObject.SetActive(true);
-        }
-
-        public void DeactivateRustedKeyInventory()
-        {
-            inventory.SetActive(false);
-            inventory.transform.GetChild(1).gameObject.SetActive(false);
         }
 
         public void ShowLivingRoomNote()
@@ -181,6 +162,21 @@ namespace UI
         public void HideLightUpTorchText()
         {
             defaultMessage.SetActive(false);
+        }
+
+        public void ShowTorchesUI()
+        {
+            torchesText.SetActive(true);
+        }
+
+        public void NotifyTorchLit(int lit)
+        {
+            torchesText.GetComponent<TextMeshProUGUI>().text = lit + "/10 Torches Lit";
+        }
+
+        public void HideLitTorchesUI()
+        {
+            torchesText.SetActive(false);
         }
     }
 }

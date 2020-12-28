@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TurnOffAllLightsEvent : MonoBehaviour, IScaryEvent
+public class TurnOffAllLightsEvent : MonoBehaviour, IEvent
 {
     private bool canFire;
     private bool finished;
@@ -22,6 +22,11 @@ public class TurnOffAllLightsEvent : MonoBehaviour, IScaryEvent
         canFire = true;
     }
 
+    public void DeactivateEvent()
+    {
+        finished = true;
+    }
+
     public bool EventFinished()
     {
         return finished;
@@ -31,15 +36,23 @@ public class TurnOffAllLightsEvent : MonoBehaviour, IScaryEvent
     {
         if (canFire && other.CompareTag("Player") && !finished)
         {
-            LightsController.instance.TurnOffAllLights();
-            AudioController.instance.PlayHorrorAmbience();
-            bedRoomGrunge.SetActive(true);
-            mainDoor.SetActive(false);
-            fakeWall.SetActive(true);
-            crickets.SetActive(false);
-            lightBlock1.SetActive(true);
-            lightBlock2.SetActive(true);
+            LightsController.instance.FlickerAllLights();
+            AudioController.instance.PlayFirstJumpscareSound();
+            CameraShake.ShakeCamera(.2f, 3f);
+            Invoke("FinishEvent", 3f);
             finished = true;
         }
+    }
+
+    private void FinishEvent()
+    {
+        LightsController.instance.TurnOffAllLights();
+        AudioController.instance.PlayHorrorAmbience();
+        bedRoomGrunge.SetActive(true);
+        mainDoor.SetActive(false);
+        fakeWall.SetActive(true);
+        crickets.SetActive(false);
+        lightBlock1.SetActive(true);
+        lightBlock2.SetActive(true);
     }
 }
