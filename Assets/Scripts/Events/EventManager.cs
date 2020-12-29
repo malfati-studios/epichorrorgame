@@ -95,7 +95,7 @@ namespace Events
             exitingDungeonEvent.SetUpEvent();
 
             slendyFinalChaseEvent = transform.GetChild(0).GetChild(9).GetComponent<IEvent>();
-            exitingDungeonEvent.SetUpEvent();
+            slendyFinalChaseEvent.SetUpEvent();
         }
 
         public void NotifyEnteredDungeon()
