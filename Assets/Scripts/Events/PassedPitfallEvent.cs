@@ -7,25 +7,30 @@ namespace Events
         [SerializeField] private GameObject fakeDungeonWall;
         [SerializeField] private GameObject dungeonDoor;
         [SerializeField] private string[] playerReaction;
+
+        private bool finished;
+
         public void SetUpEvent()
         {
         }
 
         public void FireEvent()
         {
-        
         }
 
         public void DeactivateEvent()
         {
-        
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            fakeDungeonWall.SetActive(false);
-            dungeonDoor.SetActive(true);
-            DialogManager.instance.ShowDialog(playerReaction);
+            if (!finished)
+            {
+                fakeDungeonWall.SetActive(false);
+                dungeonDoor.SetActive(true);
+                DialogManager.instance.ShowDialog(playerReaction);
+                finished = true;
+            }
         }
     }
 }

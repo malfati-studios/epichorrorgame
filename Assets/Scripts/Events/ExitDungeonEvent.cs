@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 
 namespace Events
 {
@@ -7,6 +8,11 @@ namespace Events
         [SerializeField] private GameObject slendySpawnPoint;
         [SerializeField] private GameObject dungeonBlockWall;
         [SerializeField] private Door door;
+        [SerializeField] private LevelLight houseLight;
+        [SerializeField] private GameObject hallWayFurniture;
+        [SerializeField] private GameObject hallwayGrunge;
+        
+
 
         private Slendy slendy;
         private bool canFire;
@@ -32,6 +38,8 @@ namespace Events
         {
             if (!finished && canFire)
             {
+                hallwayGrunge.SetActive(true);
+                hallWayFurniture.SetActive(false);
                 slendy.Scream(slendySpawnPoint.transform.position);
                 finished = true;
                 Invoke("CloseDoor", 1f);
@@ -41,6 +49,12 @@ namespace Events
         private void CloseDoor()
         {
             door.CloseFast();
+            Invoke("TeachToKillSlenderman", 3f);
+        }
+
+        private void TeachToKillSlenderman()
+        {
+            UIController.instance.ShowMessage("Press right mouse click to Throw Lighter!");
         }
     }
 }

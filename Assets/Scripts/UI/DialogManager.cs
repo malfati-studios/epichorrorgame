@@ -11,8 +11,8 @@ public class DialogManager : MonoBehaviour
 
     private string[] firstDialog = new[]
     {
-        "I've been lost in this forest since the morning. And I think I've been knocking the door for an hour",
-        "Door was open and I need some shelter for the night. I think there's nobody home"
+        "I have no option but to enter this cabin if I don't want to spend the night in the woods",
+        "I think there's nobody home"
     };
 
     private string[] getFlashLightDialog = new[]
@@ -21,8 +21,8 @@ public class DialogManager : MonoBehaviour
     private string[] getRustedKeyDialog = new[]
         {"Here's the key!"};
 
-    private string[] getLighterDialog = new[]
-        {"I should light all the dungeon torches so I will scare it away!"};
+    private string[] allTorchesLitDialog = new[]
+        {"I think that's all of them. Let's see if anything changed"};
 
     private string[] currentDialog;
     private int currentDialogIndex;
@@ -86,5 +86,10 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         textWriter.onCompleteText += OnCompleteText;
+    }
+
+    public void ShowAllTorchesLitDialog()
+    {
+       ShowDialog(allTorchesLitDialog);
     }
 }

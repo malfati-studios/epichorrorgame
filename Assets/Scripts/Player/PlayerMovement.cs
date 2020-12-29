@@ -31,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
 
     public MovingState state = MovingState.IDLE;
 
+    public Vector3 GetFeetPosition()
+    {
+        return groundCheck.position;
+    }
+
     private void Awake()
     {
         instance = this;

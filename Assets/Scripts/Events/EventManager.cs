@@ -103,6 +103,7 @@ public class EventManager : MonoBehaviour
     {
         exitingDungeonEvent.FireEvent();
         trappedDungeonDialogEvent.DeactivateEvent();
+        DialogManager.instance.ShowAllTorchesLitDialog();
     }
 
     void Awake()

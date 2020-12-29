@@ -2,6 +2,7 @@
 using Events;
 using UI;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Inventory
 {
@@ -11,6 +12,8 @@ namespace Inventory
         public Action<EventName> inventoryEvents;
 
         [SerializeField] private GameObject mainCamera;
+        [SerializeField] private GameObject lighterPrefabPhysics;
+        [SerializeField] private Transform throwingAltitude;
 
         private bool hasFlashlight;
         private bool hasRustedKey;
@@ -90,7 +93,8 @@ namespace Inventory
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit, 10f))
                     {
-                        if (hit.transform.CompareTag("Torch"))
+                        if (hit.transform.CompareTag("Torch") &&
+                            !hit.transform.gameObject.GetComponent<Torch>().IsLit())
                         {
                             UIController.instance.ShowLightUpTorchText();
                             if (Input.GetMouseButtonDown(0))
@@ -104,6 +108,14 @@ namespace Inventory
                         }
                     }
                 }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                mainCamera.transform.GetChild(1).gameObject.SetActive(false);
+                GameObject throwableLighter =
+                    Instantiate(lighterPrefabPhysics, new Vector3(throwingAltitude.position.x, throwingAltitude.position.y -0.1f, throwingAltitude.position. z), Quaternion.identity);
+                throwableLighter.GetComponent<Rigidbody>().AddForce(throwingAltitude.forward * 5f, ForceMode.Impulse);
             }
         }
 

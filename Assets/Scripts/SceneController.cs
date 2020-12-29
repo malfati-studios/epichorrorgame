@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour
     public static string GAME_SCENE = "GameScene";
     public static string CONTROLS_SCENE = "Controls";
     public static string MAIN_MENU = "MainMenu";
+    public static string GAME_WON = "GameWon";
 
     [SerializeField] private CanvasGroup canvasGroup = null;
     [SerializeField] private float transitionTime = 1.0f;
@@ -58,7 +59,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadGameWonScene()
     {
-        LoadSceneWithTransition("");
+        LoadSceneWithTransition(GAME_WON);
     }
 
 

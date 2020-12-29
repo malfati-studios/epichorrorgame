@@ -8,10 +8,13 @@ public class Slendy : MonoBehaviour
 
     private bool walking;
     private bool screaming;
+    private bool running;
+
     private Vector3 startWalkingPos;
     private Vector3 endWalkingPos;
     private GameObject player;
     [SerializeField] private AudioSource screamSound;
+    [SerializeField] private AudioSource deathSound;
 
     public void Reset()
     {
@@ -25,6 +28,17 @@ public class Slendy : MonoBehaviour
         startWalkingPos = startPos;
         endWalkingPos = endPos;
         transform.position = startWalkingPos;
+        transform.LookAt(endPos);
+    }
+
+    public void StartChase(Vector3 startPos, Vector3 endPos)
+    {
+        animator.SetBool("Run", true);
+        running = true;
+        startWalkingPos = startPos;
+        endWalkingPos = endPos;
+        transform.position = startWalkingPos;
+        screamSound.Play();
         transform.LookAt(endPos);
     }
 
@@ -47,7 +61,21 @@ public class Slendy : MonoBehaviour
                 return;
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, endWalkingPos, walkSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, endWalkingPos, walkSpeed * Time.deltaTime * 2);
+        }
+
+        if (running)
+        {
+            if (endWalkingPos.Equals(transform.position))
+            {
+                running = false;
+                animator.SetBool("Run", false);
+                screamSound.Stop();
+                return;
+            }
+
+            endWalkingPos = PlayerMovement.instance.GetFeetPosition();
+            transform.position = Vector3.MoveTowards(transform.position, endWalkingPos, walkSpeed * Time.deltaTime * 2);
         }
 
         if (screaming)
@@ -56,7 +84,7 @@ public class Slendy : MonoBehaviour
         }
     }
 
-    public void StartScreamSound()    
+    public void StartScreamSound()
     {
         screamSound.Play();
         CameraShake.ShakeCamera(0.2f, .9f);
@@ -75,5 +103,14 @@ public class Slendy : MonoBehaviour
         animator.SetBool("Scream", false);
         screamSound.Stop();
         Reset();
+    }
+
+    public void Die()
+    {
+        animator.SetBool("Run", false);
+        running = false;
+        screamSound.Stop();
+        animator.SetBool("Die", true);
+        deathSound.Play();
     }
 }

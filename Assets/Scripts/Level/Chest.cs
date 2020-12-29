@@ -40,31 +40,35 @@ public class Chest : MonoBehaviour
     {
         if (!playerNear) return;
         if (looted) return;
-        if (opened)
+
+        if (opened && Input.GetKeyDown(KeyCode.Q))
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                looted = true;
-                PlayerInventory.instance.PickUpLighter();
-                UIController.instance.HideMessage();
-                DialogManager.instance.ShowDialog(chestOpenedDialog);
-                UIController.instance.ShowTorchesUI();
-                transform.GetChild(2).gameObject.SetActive(false);
-            }
+            looted = true;
+            PlayerInventory.instance.PickUpLighter();
+            UIController.instance.HideMessage();
+            DialogManager.instance.ShowDialog(chestOpenedDialog);
+            UIController.instance.ShowTorchesUI();
+            transform.GetChild(2).gameObject.SetActive(false);
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.Q) && player.HasRustedKey())
         {
             UIController.instance.HideMessage();
             animation.Play();
             AudioController.instance.PLayOpenChestSound();
-            opened = true;
-            UIController.instance.ShowMessage("Press 'Q' to pick up lighter");
+            Invoke("SetOpenedAfterAnimation", 2f);
         }
     }
 
     private void Start()
     {
         animation = GetComponent<Animation>();
+    }
+
+    private void SetOpenedAfterAnimation()
+    {
+        opened = true;
+        UIController.instance.ShowMessage("Press 'Q' to pick up lighter");
     }
 }

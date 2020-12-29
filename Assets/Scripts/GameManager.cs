@@ -46,4 +46,9 @@ public class GameManager : MonoBehaviour
     {
         SceneController.instance.LoadControlsScene();
     }
+
+    public void WonTheGame()
+    {
+        SceneController.instance.LoadGameWonScene();
+    }
 }
