@@ -28,7 +28,7 @@ public class SlendyFinalChaseEvent : MonoBehaviour, IEvent
 
     public void FireEvent()
     {
-        slendy.StartWalking(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
+        slendy.StartChase(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
         CameraShake.ShakeCamera(.1f, 3f);
         LightsController.instance.FlickerAllLights();
         finished = true;
