@@ -13,7 +13,7 @@ public class SlendyFinalChaseEvent : MonoBehaviour, IEvent
         if (!finished && canFire)
         {
             slendy.StartChase(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
-            CameraShake.ShakeCamera(.1f, 3f);
+            PlayerLook.instance.ShakeCamera(.1f, 3f);
             LightsController.instance.FlickerAllLights();
             finished = true;
         }

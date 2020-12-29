@@ -27,7 +27,7 @@ public class TurnOffHallwayLightEvent : MonoBehaviour, IEvent
         LightsController.instance.FlickerHallChandelier();
         AudioController.instance.PlayElectricitySound();
         AudioController.instance.PlayHighPitchedScarySound();
-        CameraShake.ShakeCamera(.01f, 3.5f);
+        PlayerLook.instance.ShakeCamera(.01f, 3.5f);
         Invoke("EndEvent", 3.5f);
     }
 

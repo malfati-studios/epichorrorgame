@@ -72,6 +72,7 @@ public class Slendy : MonoBehaviour
                 running = false;
                 animator.SetBool("Run", false);
                 screamSound.Stop();
+                GameManager.instance.LostTheGame();
                 return;
             }
 
@@ -88,7 +89,7 @@ public class Slendy : MonoBehaviour
     public void StartScreamSound()
     {
         screamSound.Play();
-        CameraShake.ShakeCamera(0.1f, 1f);
+        PlayerLook.instance.ShakeCamera(0.1f, 1f);
     }
 
     public void Scream(Vector3 position)
@@ -112,7 +113,7 @@ public class Slendy : MonoBehaviour
         deathSound.Play();
         animator.SetBool("Run", false);
         animator.SetBool("Die", true);
-        CameraShake.ShakeCamera(0.2f, 4.5f);
+        PlayerLook.instance.ShakeCamera(0.2f, 4.5f);
         running = false;
         Invoke("PLayExplosion", 1f);
         Invoke("PLayExplosion", 2f);

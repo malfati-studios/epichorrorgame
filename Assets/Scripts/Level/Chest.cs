@@ -13,7 +13,7 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (opened) return;
+        if (looted) return;
         if (other.CompareTag("Player"))
         {
             playerNear = true;
@@ -27,7 +27,7 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (opened) return;
+        if (looted) return;
         if (other.CompareTag("Player"))
         {
             playerNear = false;

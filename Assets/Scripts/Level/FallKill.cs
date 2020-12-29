@@ -6,7 +6,7 @@ public class FallKill : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneController.instance.LoadMainMenu();
+            GameManager.instance.LostTheGame();
         }
     }
 }

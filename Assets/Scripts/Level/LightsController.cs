@@ -20,19 +20,6 @@ public class LightsController : MonoBehaviour
     private Material litMaterial;
     private Material unlitMaterial;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            TurnOffAllLights();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TurnOnAllLights();
-        }
-    }
-
     public void FlickerAllLights()
     {
         enterLamp.StartFlickering(minWaitTime, maxWaitTime);
@@ -64,7 +51,6 @@ public class LightsController : MonoBehaviour
         cabinetLamp.TurnOn();
         deskLamp.TurnOn();
         livingChandelier.TurnOn();
-        hallChandelier.TurnOn();
         roomLamp.TurnOn();
     }
 

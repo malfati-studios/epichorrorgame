@@ -52,4 +52,9 @@ public class GameManager : MonoBehaviour
     {
         SceneController.instance.LoadGameWonScene();
     }
+
+    public void LostTheGame()
+    {
+        SceneController.instance.LoadGameLostScene();
+    }
 }

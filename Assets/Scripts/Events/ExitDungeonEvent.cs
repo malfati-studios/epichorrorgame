@@ -47,12 +47,12 @@ namespace Events
         private void CloseDoor()
         {
             door.CloseFast();
-            Invoke("TeachToKillSlenderman", 3f);
+            Invoke("TeachToKillSlenderman", 6f);
         }
 
         private void TeachToKillSlenderman()
         {
-            UIController.instance.ShowMessage("Press right mouse click to Throw Lighter!");
+            UIController.instance.ShowMessage("Press right mouse click to throw the lighter to Slenderman!");
         }
     }
 }

@@ -38,7 +38,7 @@ public class TurnOffAllLightsEvent : MonoBehaviour, IEvent
         {
             LightsController.instance.FlickerAllLights();
             AudioController.instance.PlayFirstJumpscareSound();
-            CameraShake.ShakeCamera(.2f, 3f);
+            PlayerLook.instance.ShakeCamera(.2f, 3f);
             Invoke("FinishEvent", 3f);
             finished = true;
         }

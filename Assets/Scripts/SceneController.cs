@@ -10,12 +10,13 @@ public class SceneController : MonoBehaviour
     public static string CONTROLS_SCENE = "Controls";
     public static string MAIN_MENU = "MainMenu";
     public static string GAME_WON = "GameWon";
+    public static string GAME_LOST = "GameLost";
+
 
     [SerializeField] private CanvasGroup canvasGroup = null;
     [SerializeField] private float transitionTime = 1.0f;
 
     public Action<string> levelLoaded;
-
 
     #endregion
 
@@ -62,6 +63,10 @@ public class SceneController : MonoBehaviour
         LoadSceneWithTransition(GAME_WON);
     }
 
+    public void LoadGameLostScene()
+    {
+        LoadSceneWithTransition(GAME_LOST);
+    }
 
     public void RestartGame()
     {
@@ -77,7 +82,7 @@ public class SceneController : MonoBehaviour
     {
         LoadSceneWithTransition(GAME_SCENE);
     }
-    
+
     public void LoadControlsScene()
     {
         LoadSceneWithTransition(CONTROLS_SCENE);

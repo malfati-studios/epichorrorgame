@@ -99,10 +99,6 @@ namespace Utils {
             }
         }
 
-
-
-
-
         private GameObject gameObject;
         private string functionName;
         private bool active;
