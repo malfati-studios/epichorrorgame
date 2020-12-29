@@ -15,6 +15,7 @@ public class Slendy : MonoBehaviour
     private GameObject player;
     [SerializeField] private AudioSource screamSound;
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private GameObject deathparticleSystem;
 
     public void Reset()
     {
@@ -87,13 +88,13 @@ public class Slendy : MonoBehaviour
     public void StartScreamSound()
     {
         screamSound.Play();
-        CameraShake.ShakeCamera(0.2f, .9f);
+        CameraShake.ShakeCamera(0.1f, 1f);
     }
 
     public void Scream(Vector3 position)
     {
         transform.position = position;
-        transform.LookAt(player.transform.position);
+        transform.LookAt(player.transform.position);    
         animator.SetBool("Scream", true);
     }
 
@@ -107,10 +108,29 @@ public class Slendy : MonoBehaviour
 
     public void Die()
     {
-        animator.SetBool("Run", false);
-        running = false;
         screamSound.Stop();
-        animator.SetBool("Die", true);
         deathSound.Play();
+        animator.SetBool("Run", false);
+        animator.SetBool("Die", true);
+        CameraShake.ShakeCamera(0.2f, 4.5f);
+        running = false;
+        Invoke("PLayExplosion", 1f);
+        Invoke("PLayExplosion", 2f);
+        Invoke("PLayExplosion", 3f);
+        Invoke("PLayExplosion", 4f);
+        Invoke("FinallyDie", 4.5f);
+        
+    }
+    
+    private void FinallyDie()
+    {
+        deathSound.Stop();
+        Reset();
+        LightsController.instance.TurnOnAllLights();
+    }
+
+    private void PLayExplosion()
+    {
+        deathparticleSystem.GetComponent<ParticleSystem>().Play();
     }
 }
