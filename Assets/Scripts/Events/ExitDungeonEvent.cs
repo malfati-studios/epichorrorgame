@@ -12,8 +12,6 @@ namespace Events
         [SerializeField] private GameObject hallWayFurniture;
         [SerializeField] private GameObject hallwayGrunge;
         
-
-
         private Slendy slendy;
         private bool canFire;
         private bool finished;

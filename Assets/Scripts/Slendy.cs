@@ -127,6 +127,7 @@ public class Slendy : MonoBehaviour
         deathSound.Stop();
         Reset();
         LightsController.instance.TurnOnAllLights();
+        AudioController.instance.StopAmbienceSound();
     }
 
     private void PLayExplosion()

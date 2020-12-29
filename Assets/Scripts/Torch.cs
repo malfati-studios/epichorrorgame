@@ -5,6 +5,7 @@ public class Torch : MonoBehaviour
 {
     private GameObject light;
     private GameObject flames;
+    private GameObject sound;
     private bool lit;
     private PlayerInventory player;
 
@@ -14,6 +15,7 @@ public class Torch : MonoBehaviour
         light.SetActive(false);
         flames = transform.GetChild(1).gameObject;
         flames.SetActive(false);
+        sound = transform.GetChild(2).gameObject;
     }
 
     public bool IsLit()
@@ -28,6 +30,8 @@ public class Torch : MonoBehaviour
         TorchesController.instance.NotifyTorchLit();
         lit = true;
         player.StopPollingForTorch();
+        sound.SetActive(true);
+        sound.GetComponent<AudioSource>().Play();
     }
 
     private void OnTriggerEnter(Collider other)

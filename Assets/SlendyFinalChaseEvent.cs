@@ -6,32 +6,28 @@ public class SlendyFinalChaseEvent : MonoBehaviour, IEvent
     [SerializeField] private Transform slendySpawnPoint;
 
     private bool finished;
-    // Start is called before the first frame update
-
-    public void Start()
-    {
-        slendy = GameObject.FindGameObjectWithTag("Slendy").GetComponent<Slendy>();
-        slendySpawnPoint = transform.GetChild(0);
-    }
+    private bool canFire;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!finished)
+        if (!finished && canFire)
         {
-            FireEvent();
+            slendy.StartChase(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
+            CameraShake.ShakeCamera(.1f, 3f);
+            LightsController.instance.FlickerAllLights();
+            finished = true;
         }
     }
 
     public void SetUpEvent()
     {
+        slendy = GameObject.FindGameObjectWithTag("Slendy").GetComponent<Slendy>();
+        slendySpawnPoint = transform.GetChild(0);
     }
 
     public void FireEvent()
     {
-        slendy.StartChase(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
-        CameraShake.ShakeCamera(.1f, 3f);
-        LightsController.instance.FlickerAllLights();
-        finished = true;
+        canFire = true;
     }
 
     public void DeactivateEvent()

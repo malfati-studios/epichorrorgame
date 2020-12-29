@@ -105,4 +105,9 @@ public class AudioController : MonoBehaviour
     {
         electricitySound.Stop();
     }
+
+    public void StopAmbienceSound()
+    {
+        horrorAmbience.Stop();
+    }
 }
