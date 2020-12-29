@@ -2,8 +2,13 @@
 
 public class QuitButton : MonoBehaviour
 {
-  public void QuitGame()
-  {
-    Application.Quit();
-  }
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

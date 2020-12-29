@@ -3189,15 +3189,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108022351152901482, guid: 8a1d8025058f24b44ad1e51547a5e995, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 108022351152901482, guid: 8a1d8025058f24b44ad1e51547a5e995, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.7176471
       objectReference: {fileID: 0}
     - target: {fileID: 108022351152901482, guid: 8a1d8025058f24b44ad1e51547a5e995, type: 3}
       propertyPath: m_Color.b
-      value: 0.8537736
+      value: 0.5686275
       objectReference: {fileID: 0}
     - target: {fileID: 108022351152901482, guid: 8a1d8025058f24b44ad1e51547a5e995, type: 3}
       propertyPath: m_BounceIntensity
