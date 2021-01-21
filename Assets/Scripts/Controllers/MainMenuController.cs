@@ -20,5 +20,8 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.ShowCredits();
     }
     
-    
+    public void OnQuitButtonPreseds()
+    {
+        Application.Quit();
+    }
 }

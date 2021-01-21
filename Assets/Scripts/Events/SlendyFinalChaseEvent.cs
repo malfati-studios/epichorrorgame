@@ -15,7 +15,7 @@ public class SlendyFinalChaseEvent : MonoBehaviour, IEvent
         {
             PlayerInventory.instance.AllowThrowLighter();
             slendy.StartChase(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
-            PlayerLook.instance.ShakeCamera(.1f, 3f);
+            PlayerLook.instance.ShakeCamera(.005f, 3f);
             LightsController.instance.FlickerAllLights();
             finished = true;
         }
