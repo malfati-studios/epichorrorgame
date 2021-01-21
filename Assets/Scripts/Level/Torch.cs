@@ -7,7 +7,6 @@ public class Torch : MonoBehaviour
     private GameObject flames;
     private GameObject sound;
     private bool lit;
-    private PlayerLook player;
 
     void Start()
     {
@@ -29,7 +28,7 @@ public class Torch : MonoBehaviour
         flames.SetActive(true);
         TorchesController.instance.NotifyTorchLit();
         lit = true;
-        player.StopPollingForTorch();
+        PlayerLook.instance.StopPollingForTorch();
         sound.SetActive(true);
         sound.GetComponent<AudioSource>().Play();
     }
@@ -37,13 +36,12 @@ public class Torch : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (lit) return;
-        player = other.GetComponent<PlayerLook>();
-        player.StartPollingForTorch();
+        PlayerLook.instance.StartPollingForTorch();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (lit) return;
-        player.StopPollingForTorch();
+        PlayerLook.instance.StopPollingForTorch();
     }
 }
