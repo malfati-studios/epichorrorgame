@@ -88,6 +88,17 @@ public class SceneController : MonoBehaviour
     {
         LoadSceneWithTransition(CONTROLS_SCENE);
     }
+    
+    public void LoadMainMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        LoadSceneInstant(MAIN_MENU);
+    }
+    
+    public void LoadCredits()
+    {
+        LoadSceneInstant(CREDITS);
+    }
 
     #endregion
 
@@ -188,16 +199,4 @@ public class SceneController : MonoBehaviour
     }
 
     #endregion
-
-    public void LoadMainMenu()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        LoadSceneInstant(MAIN_MENU);
-    }
-    
-    public void LoadCredits()
-    {
-        LoadSceneInstant(CREDITS);
-    }
-
 }

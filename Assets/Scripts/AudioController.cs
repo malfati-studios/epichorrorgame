@@ -60,7 +60,7 @@ public class AudioController : MonoBehaviour
     {
         firstJumpscareSound.Play();
     }
-    
+
     public void PlayHighPitchedScarySound()
     {
         highPitchedSound.Play();
@@ -100,7 +100,7 @@ public class AudioController : MonoBehaviour
     {
         electricitySound.Play();
     }
-    
+
     public void StopElectricitySound()
     {
         electricitySound.Stop();
