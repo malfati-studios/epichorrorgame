@@ -2,7 +2,6 @@
 using Events;
 using UI;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Inventory
 {
