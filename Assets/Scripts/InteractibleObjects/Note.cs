@@ -22,12 +22,12 @@ public class Note : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerInventory>().StartPollingForPLayerLookNote();
+        other.GetComponent<PlayerLook>().StartPollingForPLayerLookNote();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<PlayerInventory>().StopPollingForPLayerLookNote();
+        other.GetComponent<PlayerLook>().StopPollingForPLayerLookNote();
     }
 
     public void ShowNote()

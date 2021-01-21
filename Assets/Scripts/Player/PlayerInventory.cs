@@ -20,10 +20,6 @@ namespace Inventory
         private bool hasLighter;
         private bool canThrowLighter;
 
-
-        private bool pollingPlayerLookNote;
-        private bool pollingPlayerTorch;
-
         private void Awake()
         {
             instance = this;
@@ -65,57 +61,13 @@ namespace Inventory
                 }
             }
 
-            if (pollingPlayerLookNote)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 10f))
-                {
-                    if (hit.transform.CompareTag("Note"))
-                    {
-                        UIController.instance.ShowMessage("Left click to read note");
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            hit.transform.GetComponent<Note>().ShowNote();
-                        }
-                    }
-                    else
-                    {
-                        UIController.instance.HideLeftClickForNoteText();
-                    }
-                }
-            }
-
-            if (hasLighter)
-            {
-                if (pollingPlayerTorch)
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit, 10f))
-                    {
-                        if (hit.transform.CompareTag("Torch") &&
-                            !hit.transform.gameObject.GetComponent<Torch>().IsLit())
-                        {
-                            UIController.instance.ShowLightUpTorchText();
-                            if (Input.GetMouseButtonDown(0))
-                            {
-                                hit.transform.GetComponent<Torch>().TurnOn();
-                            }
-                        }
-                        else
-                        {
-                            UIController.instance.HideMessage();
-                        }
-                    }
-                }
-            }
-
             if (canThrowLighter && Input.GetMouseButtonDown(1))
             {
                 mainCamera.transform.GetChild(1).gameObject.SetActive(false);
                 GameObject throwableLighter =
-                    Instantiate(lighterPrefabPhysics, new Vector3(throwingAltitude.position.x, throwingAltitude.position.y -0.1f, throwingAltitude.position. z), Quaternion.identity);
+                    Instantiate(lighterPrefabPhysics,
+                        new Vector3(throwingAltitude.position.x, throwingAltitude.position.y - 0.1f,
+                            throwingAltitude.position.z), Quaternion.identity);
                 throwableLighter.GetComponent<Rigidbody>().AddForce(throwingAltitude.forward * 5f, ForceMode.Impulse);
             }
         }
@@ -128,28 +80,7 @@ namespace Inventory
             mainCamera.transform.GetChild(1).gameObject.SetActive(true);
             mainCamera.transform.GetChild(0).gameObject.SetActive(false);
             inventoryEvents.Invoke(EventName.PICK_UP_LIGHTER);
-        }
-
-        public void StartPollingForPLayerLookNote()
-        {
-            pollingPlayerLookNote = true;
-        }
-
-        public void StopPollingForPLayerLookNote()
-        {
-            UIController.instance.HideLeftClickForNoteText();
-            pollingPlayerLookNote = false;
-        }
-
-        public void StartPollingForTorch()
-        {
-            pollingPlayerTorch = true;
-        }
-
-        public void StopPollingForTorch()
-        {
-            UIController.instance.HideLightUpTorchText();
-            pollingPlayerTorch = false;
+            PlayerLook.instance.NotifyPlayerHasLighter();
         }
 
         public void AllowThrowLighter()
