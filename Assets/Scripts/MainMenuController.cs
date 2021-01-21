@@ -15,5 +15,10 @@ public class MainMenuController : MonoBehaviour
         GameManager.instance.ShowControls();
     }
     
+    public void OnCreditsButtonPreseds()
+    {
+        GameManager.instance.ShowCredits();
+    }
+    
     
 }

@@ -1,6 +1,5 @@
 ﻿using Events;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,5 +55,10 @@ public class GameManager : MonoBehaviour
     public void LostTheGame()
     {
         SceneController.instance.LoadGameLostScene();
+    }
+
+    public void ShowCredits()
+    {
+        SceneController.instance.LoadCredits();
     }
 }

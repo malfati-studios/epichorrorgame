@@ -19,6 +19,8 @@ namespace Inventory
         private bool hasRustedKey;
         private bool activeFlashLight;
         private bool hasLighter;
+        private bool canThrowLighter;
+
 
         private bool pollingPlayerLookNote;
         private bool pollingPlayerTorch;
@@ -110,7 +112,7 @@ namespace Inventory
                 }
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (canThrowLighter && Input.GetMouseButtonDown(1))
             {
                 mainCamera.transform.GetChild(1).gameObject.SetActive(false);
                 GameObject throwableLighter =
@@ -149,6 +151,11 @@ namespace Inventory
         {
             UIController.instance.HideLightUpTorchText();
             pollingPlayerTorch = false;
+        }
+
+        public void AllowThrowLighter()
+        {
+            canThrowLighter = true;
         }
     }
 }

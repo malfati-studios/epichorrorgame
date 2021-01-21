@@ -52,7 +52,7 @@ namespace Events
 
         private void TeachToKillSlenderman()
         {
-            UIController.instance.ShowTimedMessage("Press right mouse click to throw the lighter to Slenderman!", 5f);
+            UIController.instance.ShowMessage("Press right mouse click to throw the lighter to Slenderman!");
         }
     }
 }

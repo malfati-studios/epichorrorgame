@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Inventory;
+using UnityEngine;
 
 public class SlendyFinalChaseEvent : MonoBehaviour, IEvent
 {
@@ -12,6 +13,7 @@ public class SlendyFinalChaseEvent : MonoBehaviour, IEvent
     {
         if (!finished && canFire)
         {
+            PlayerInventory.instance.AllowThrowLighter();
             slendy.StartChase(slendySpawnPoint.position, PlayerMovement.instance.GetFeetPosition());
             PlayerLook.instance.ShakeCamera(.1f, 3f);
             LightsController.instance.FlickerAllLights();

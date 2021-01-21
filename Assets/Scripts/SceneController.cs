@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     public static string MAIN_MENU = "MainMenu";
     public static string GAME_WON = "GameWon";
     public static string GAME_LOST = "GameLost";
+    public static string CREDITS = "Credits";
 
 
     [SerializeField] private CanvasGroup canvasGroup = null;
@@ -191,6 +192,12 @@ public class SceneController : MonoBehaviour
     public void LoadMainMenu()
     {
         Cursor.lockState = CursorLockMode.None;
-        LoadSceneInstant("MainMenu");
+        LoadSceneInstant(MAIN_MENU);
     }
+    
+    public void LoadCredits()
+    {
+        LoadSceneInstant(CREDITS);
+    }
+
 }
